@@ -1,0 +1,28 @@
+## POWERSHELL
+
+rename-computer -newname TESTE -restart
+
+Install-WindowsFeature Ad-Domain-Services -IncludeAllSubFeature -IncludeManagementTools
+
+Install-ADDSForest -DomainName DARK.LOCAL -SkipPreChecks - SafeMode
+
+mstsc /v:192.168.1.254
+
+Get-Command *account*
+
+Get-Command *account* | Where-Object {$_.Verb -eq "Add"}
+
+Get-Command -Module ActiveDirectory | Out-Gridview
+
+get-help New-ADUser
+
+$Senha = ConvertTo-SecureString -AsPlainText -Force "Senha@2024"
+New-ADUser -Name marcio.fuboca `
+    -AccountPassword $Senha `
+    -EmailAddress "fuboca@agrocrestani.com.br" `
+    -Enabled $True `
+    -GivenName Marcio `
+    -SurName Fuboca `
+    -Path "CN=USERS,DC=AGROCRESTANI,DC=LOCAL" `
+    -UserPrincipalName "Marcio Fuboca" `
+    -SamAccountName Marcio
